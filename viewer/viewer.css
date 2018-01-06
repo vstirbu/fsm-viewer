@@ -1,0 +1,23 @@
+html,
+body {
+  font: 300 14px 'Helvetica Neue', Helvetica;
+  margin: 0;
+  padding: 0;
+}
+
+.node circle,
+.node .choice,
+.node rect {
+  stroke: #333;
+  fill: #fff;
+}
+
+.edgePath path {
+  stroke: #333;
+  fill: #333;
+}
+
+.node circle.initial,
+.node circle.final {
+  fill: #333;
+}

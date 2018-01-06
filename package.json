@@ -1,21 +1,24 @@
 {
   "name": "fsm-viewer",
   "displayName": "Finite state machine viewer",
-  "description":
-    "VSCode viewer for finite state machines using fsm-as-promised library",
+  "description": "VSCode viewer for finite state machines using fsm-as-promised library",
   "version": "0.0.1",
   "publisher": "vstirbu",
   "engines": {
     "vscode": "^1.19.0"
   },
-  "categories": ["Other"],
-  "activationEvents": ["onCommand:extension.sayHello"],
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:extension.viewFsm"
+  ],
   "main": "./extension",
   "contributes": {
     "commands": [
       {
-        "command": "extension.sayHello",
-        "title": "Hello World"
+        "command": "extension.viewFsm",
+        "title": "View FSM"
       }
     ]
   },
@@ -29,5 +32,11 @@
     "eslint": "^4.6.1",
     "@types/node": "^7.0.43",
     "@types/mocha": "^2.2.42"
+  },
+  "dependencies": {
+    "d3": "^4.12.2",
+    "dagre-d3": "^0.5.4",
+    "file-url": "^2.0.2",
+    "fsm2dot": "^1.2.0"
   }
 }
