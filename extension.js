@@ -31,6 +31,10 @@ function activate(context) {
     }
   });
 
+  vscode.window.onDidChangeActiveTextEditor(e => {
+    provider.update(previewUri);
+  });
+
   context.subscriptions.push(disposable, registration);
 }
 exports.activate = activate;
