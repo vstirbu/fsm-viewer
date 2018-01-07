@@ -6,6 +6,7 @@ module.exports = class FsmContentProvider{
   constructor(context) {
     this._onDidChange = new vscode.EventEmitter();
     this.context = context;
+    this.update();
   }
 
   provideTextDocumentContent(uri, token) {
@@ -35,8 +36,6 @@ module.exports = class FsmContentProvider{
       </body>
     </html>
     ` : 'file does not contain fsm';
-
-    console.log(JSON.stringify(this.spec));
 
     return content;
   }
