@@ -32,6 +32,8 @@ module.exports = class FsmContentProvider{
 
         <script>
         renderer(JSON.parse('${JSON.stringify(this.spec)}'));
+
+        window.addEventListener('resize', resize);
         </script>
       </body>
     </html>

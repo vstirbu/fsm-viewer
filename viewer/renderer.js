@@ -1,3 +1,5 @@
+/* global window */
+
 function renderer(spec) {
   // Create a new directed graph
   const g = new dagreD3.graphlib.Graph().setGraph({});
@@ -53,6 +55,13 @@ function renderer(spec) {
   const height = (svg.attr('height') - g.graph().height * initialScale) / 2;
 
   svg.call(zoom.transform, d3.zoomIdentity.translate(width, height).scale(initialScale));
+}
+
+function resize() {
+  const svg = d3.select('svg');
+
+  svg.attr('height', window.innerHeight - 5);
+  svg.attr('width', window.innerWidth - 5);
 }
 
 function scalingFactor(g, svg) {
