@@ -13,7 +13,7 @@ function activate(context) {
 
   const registration = vscode.workspace.registerTextDocumentContentProvider('fsm-viewer', provider);
 
-  const disposable = registerCommand('extension.viewFsm', () => {
+  const disposable = registerCommand('fsm-viewer.view', () => {
     vscode.commands
     .executeCommand('vscode.previewHtml', previewUri, vscode.ViewColumn.Two, 'FSM Viewer')
     .then(success => {}, reason => vscode.window.showErrorMessage(reason));

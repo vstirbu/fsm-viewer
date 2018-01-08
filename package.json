@@ -1,8 +1,8 @@
 {
   "name": "fsm-viewer",
   "displayName": "Finite state machine viewer",
-  "description": "VSCode viewer for finite state machines using fsm-as-promised library",
-  "version": "0.0.1",
+  "description": "View finite state machines using fsm-as-promised library as UML diagrams in VSCode",
+  "version": "1.0.0",
   "publisher": "vstirbu",
   "engines": {
     "vscode": "^1.19.0"
@@ -11,14 +11,14 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:extension.viewFsm"
+    "onCommand:fsm-viewer.view"
   ],
   "main": "./extension",
   "contributes": {
     "commands": [
       {
-        "command": "extension.viewFsm",
-        "title": "View FSM"
+        "command": "fsm-viewer.view",
+        "title": "View FSM as UML diagram"
       }
     ]
   },
