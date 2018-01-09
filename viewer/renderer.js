@@ -19,7 +19,13 @@ function renderer(spec) {
   g.setNode(spec.initial, { shape: 'initial', label: '' });
 
   spec.events.forEach((event) => {
-    g.setEdge(event.from, event.to, { label: event.label, arrowhead: 'vee' });
+    if (Array.isArray(event.from)) {
+      event.from.forEach(from => {
+        g.setEdge(from, event.to, { label: event.label, arrowhead: 'vee' });
+      });
+    } else {
+      g.setEdge(event.from, event.to, { label: event.label, arrowhead: 'vee' });
+    }
   });
 
   const svg = d3.select('svg');
