@@ -5,8 +5,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
-## 1.0.1 - 2018-01-09
+## 1.1.0 - 2018-01-10
+- Support for events with multiple from states
 
+## 1.0.1 - 2018-01-09
 - Support for arrow functions (via fsm2dot)
 
 ## 1.0.0 - 2018-01-08

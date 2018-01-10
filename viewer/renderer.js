@@ -4,6 +4,8 @@ function renderer(spec) {
   // Create a new directed graph
   const g = new dagreD3.graphlib.Graph().setGraph({});
 
+  g.setNode(spec.initial, { shape: 'initial', label: '' });
+
   spec.final.forEach((state) => {
     g.setNode(state, { shape: 'final', label: '' });
   });
@@ -15,8 +17,6 @@ function renderer(spec) {
   spec.choices.forEach((state) => {
     g.setNode(state, { shape: 'choice', label: '' });
   });
-
-  g.setNode(spec.initial, { shape: 'initial', label: '' });
 
   spec.events.forEach((event) => {
     if (Array.isArray(event.from)) {
@@ -111,6 +111,8 @@ function final(parent, bbox, node) {
     .classed('final', true);
 
   node.intersect = function(point) {
+    console.log(JSON.stringify(point));
+    console.log(JSON.stringify(dagreD3.intersect.circle(node, r, point)));
     return dagreD3.intersect.circle(node, r, point);
   };
 
