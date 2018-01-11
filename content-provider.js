@@ -12,7 +12,7 @@ module.exports = class FsmContentProvider{
   provideTextDocumentContent(uri, token) {
     const d3Url = fileUrl(this.context.asAbsolutePath('node_modules/d3/build/d3.min.js'));
     const dagreD3Url = fileUrl(this.context.asAbsolutePath('node_modules/dagre-d3/dist/dagre-d3.min.js'));
-    const rendererUrl = fileUrl(this.context.asAbsolutePath('viewer/renderer.js'));
+    const rendererUrl = fileUrl(this.context.asAbsolutePath('dist/index.js'));
 
     const cssUrl = fileUrl(this.context.asAbsolutePath('viewer/viewer.css'));
 
@@ -31,9 +31,9 @@ module.exports = class FsmContentProvider{
         <svg width=600 height=400><g/></svg>
 
         <script>
-        renderer(JSON.parse('${JSON.stringify(this.spec)}'));
+        extension.renderer(JSON.parse('${JSON.stringify(this.spec)}'));
 
-        window.addEventListener('resize', resize);
+        window.addEventListener('resize', extension.resize);
         </script>
       </body>
     </html>
