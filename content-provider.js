@@ -48,12 +48,15 @@ module.exports = class FsmContentProvider{
 
   update(uri) {
     const editor = vscode.window.activeTextEditor;
-    const text = editor.document.getText();
-    try {
-      this.spec = parser(text);
-      this._onDidChange.fire(uri);
-    } catch (e) {
-      console.log(e);
+
+    if (editor) {
+      const text = editor.document.getText();
+      try {
+        this.spec = parser(text);
+        this._onDidChange.fire(uri);
+      } catch (e) {
+        console.log(e);
+      }
     }
   }
 }
