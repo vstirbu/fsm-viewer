@@ -29,8 +29,8 @@
         "command": "fsm-viewer.save",
         "title": "Save SVG",
         "icon":{
-          "light": "./images/export.svg",
-          "dark": "./images/export.svg"
+          "light": "./images/export-svg.svg",
+          "dark": "./images/export-svg.svg"
         }
       }
     ],

@@ -72,18 +72,15 @@ require = (function (modules, cache, entry) {
 })({5:[function(require,module,exports) {
 /* global document, XMLSerializer */
 
-const css = `
-html,
-body,
-svg {
+const css = `svg {
   font: 300 14px 'Helvetica Neue', Helvetica;
   margin: 0;
   padding: 0;
 }
 
-.node circle,
-.node .choice,
-.node .state {
+.final .outer,
+.choice,
+.state {
   stroke: #333;
   fill: #fff;
 }
@@ -93,9 +90,14 @@ svg {
   fill: #333;
 }
 
-.node circle.initial,
-.node circle.final {
+.initial circle,
+.final .inner {
   fill: #333;
+}
+
+.final .label,
+.initial .label {
+  transform: translate(30px, 0);
 }
 `;
 
@@ -274,14 +276,18 @@ module.exports = function final(parent, bbox, node) {
     .insert("circle", ":first-child")
     .attr("x", -bbox.width / 2)
     .attr("y", -bbox.height / 2)
-    .attr("r", r);
+    .attr("r", r)
+    .classed('outer', true);
 
   parent
     .append("circle")
     .attr("x", -bbox.width / 2)
     .attr("y", -bbox.height / 2)
     .attr("r", r - 5)
-    .classed("final", true);
+    .classed("inner", true);
+
+  parent
+    .classed('final', true);
 
   node.intersect = function(point) {
     return dagreD3.intersect.circle(node, r, point);
@@ -299,8 +305,9 @@ module.exports = function initial(parent, bbox, node) {
     .insert("circle", ":first-child")
     .attr("x", -bbox.width / 2)
     .attr("y", -bbox.height / 2)
-    .attr("r", r)
-    .classed("initial", true);
+    .attr("r", r);
+
+  parent.classed('initial', true);
 
   node.intersect = function(point) {
     return dagreD3.intersect.circle(node, r, point);
@@ -363,10 +370,10 @@ function renderer(spec) {
   // Create a new directed graph
   const g = new dagreD3.graphlib.Graph().setGraph({});
 
-  g.setNode(spec.initial, { shape: "initial", label: "" });
+  g.setNode(spec.initial, { shape: "initial", label: spec.initial });
 
   spec.final.forEach(state => {
-    g.setNode(state, { shape: "final", label: "" });
+    g.setNode(state, { shape: "final", label: state });
   });
 
   spec.states.forEach(state => {
