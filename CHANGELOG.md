@@ -5,6 +5,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## 1.2.0 - 2018-01-17
+- Export diagram to SVG
+
 ## 1.1.0 - 2018-01-10
 - Support for events with multiple from states
 

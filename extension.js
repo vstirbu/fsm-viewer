@@ -49,8 +49,8 @@ function activate(context) {
           vscode.window.showErrorMessage('SVG export failed');
         } else {
           vscode.window.showInputBox({
-            prompt: 'Output file',
-            placeHolder: 'output.svg'
+            prompt: 'Relative to project root',
+            placeHolder: 'Type the output file name'
           }).then((input) => {
             try {
               fs.writeFileSync(path.join(vscode.workspace.rootPath, input), body);
