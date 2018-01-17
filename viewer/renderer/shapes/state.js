@@ -8,7 +8,8 @@ module.exports = function state(parent, bbox, node) {
     .attr("x", -bbox.width / 2)
     .attr("y", -bbox.height / 2)
     .attr("width", bbox.width)
-    .attr("height", bbox.height);
+    .attr("height", bbox.height)
+    .classed('state', true);
 
   node.intersect = function(point) {
     return dagreD3.intersect.rect(node, point);

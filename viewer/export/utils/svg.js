@@ -1,16 +1,43 @@
 /* global document, XMLSerializer */
 
+const css = `
+html,
+body,
+svg {
+  font: 300 14px 'Helvetica Neue', Helvetica;
+  margin: 0;
+  padding: 0;
+}
+
+.node circle,
+.node .choice,
+.node .state {
+  stroke: #333;
+  fill: #fff;
+}
+
+.edgePath path {
+  stroke: #333;
+  fill: #333;
+}
+
+.node circle.initial,
+.node circle.final {
+  fill: #333;
+}
+`;
+
 module.exports = getSVGString;
 
 function getSVGString (svgNode) {
   svgNode.setAttribute("xlink", "http://www.w3.org/1999/xlink");
-  var cssStyleText = getCSSStyles(svgNode);
-  appendCSS(cssStyleText, svgNode);
+  appendCSS(css, svgNode);
 
   var serializer = new XMLSerializer();
   var svgString = serializer.serializeToString(svgNode);
   svgString = svgString.replace(/(\w+)?:?xlink=/g, "xmlns:xlink="); // Fix root xlink without namespace
   svgString = svgString.replace(/NS\d+:href/g, "xlink:href"); // Safari NS namespace fix
+  svgString = svgString.replace(new RegExp(document.location.href, 'g'), ''); // Fix marker urls to be local scope
 
   return svgString;
 };

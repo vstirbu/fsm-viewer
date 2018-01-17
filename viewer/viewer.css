@@ -7,7 +7,7 @@ body {
 
 .node circle,
 .node .choice,
-.node rect {
+.node .state {
   stroke: #333;
   fill: #fff;
 }
