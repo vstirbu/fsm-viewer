@@ -11,10 +11,10 @@ function renderer(spec) {
   // Create a new directed graph
   const g = new dagreD3.graphlib.Graph().setGraph({});
 
-  g.setNode(spec.initial, { shape: "initial", label: "" });
+  g.setNode(spec.initial, { shape: "initial", label: spec.initial });
 
   spec.final.forEach(state => {
-    g.setNode(state, { shape: "final", label: "" });
+    g.setNode(state, { shape: "final", label: state });
   });
 
   spec.states.forEach(state => {

@@ -22,6 +22,11 @@ const css = `svg {
 .final .inner {
   fill: #333;
 }
+
+.final .label,
+.initial .label {
+  transform: translate(30px, 0);
+}
 `;
 
 module.exports = getSVGString;
