@@ -6,14 +6,18 @@ module.exports = function final(parent, bbox, node) {
     .insert("circle", ":first-child")
     .attr("x", -bbox.width / 2)
     .attr("y", -bbox.height / 2)
-    .attr("r", r);
+    .attr("r", r)
+    .classed('outer', true);
 
   parent
     .append("circle")
     .attr("x", -bbox.width / 2)
     .attr("y", -bbox.height / 2)
     .attr("r", r - 5)
-    .classed("final", true);
+    .classed("inner", true);
+
+  parent
+    .classed('final', true);
 
   node.intersect = function(point) {
     return dagreD3.intersect.circle(node, r, point);

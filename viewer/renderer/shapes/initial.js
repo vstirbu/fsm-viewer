@@ -6,8 +6,9 @@ module.exports = function initial(parent, bbox, node) {
     .insert("circle", ":first-child")
     .attr("x", -bbox.width / 2)
     .attr("y", -bbox.height / 2)
-    .attr("r", r)
-    .classed("initial", true);
+    .attr("r", r);
+
+  parent.classed('initial', true);
 
   node.intersect = function(point) {
     return dagreD3.intersect.circle(node, r, point);

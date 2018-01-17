@@ -1,17 +1,14 @@
 /* global document, XMLSerializer */
 
-const css = `
-html,
-body,
-svg {
+const css = `svg {
   font: 300 14px 'Helvetica Neue', Helvetica;
   margin: 0;
   padding: 0;
 }
 
-.node circle,
-.node .choice,
-.node .state {
+.final .outer,
+.choice,
+.state {
   stroke: #333;
   fill: #fff;
 }
@@ -21,8 +18,8 @@ svg {
   fill: #333;
 }
 
-.node circle.initial,
-.node circle.final {
+.initial circle,
+.final .inner {
   fill: #333;
 }
 `;
