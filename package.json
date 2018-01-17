@@ -24,8 +24,31 @@
       {
         "command": "fsm-viewer.view",
         "title": "View FSM as UML diagram"
+      },
+      {
+        "command": "fsm-viewer.save",
+        "title": "Save SVG",
+        "icon":{
+          "light": "./images/export-svg.svg",
+          "dark": "./images/export-svg.svg"
+        }
       }
-    ]
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "fsm-viewer.save",
+          "when": "false"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "fsm-viewer.save",
+          "group": "navigation",
+          "when": "resourceScheme == 'fsm-viewer' && fsm-viewer:canExport"
+        }
+      ]
+    }
   },
   "scripts": {
     "postinstall": "node ./node_modules/vscode/bin/install",
@@ -39,9 +62,14 @@
     "vscode": "^1.1.6"
   },
   "dependencies": {
+    "body-parser": "^1.18.2",
     "d3": "^4.12.2",
     "dagre-d3": "^0.5.4",
+    "express": "^4.16.2",
     "file-url": "^2.0.2",
-    "fsm2dot": "^1.3.0"
+    "fsm-as-promised": "^0.15.1",
+    "fsm2dot": "^1.3.0",
+    "get-port": "^3.2.0",
+    "uuid": "^3.2.0"
   }
 }
