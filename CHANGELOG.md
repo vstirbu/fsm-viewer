@@ -5,6 +5,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## 1.3.0 - 2018-01-18
+- Render state activities and guards
+
 ## 1.2.0 - 2018-01-17
 - Export diagram to SVG
 
