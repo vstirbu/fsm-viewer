@@ -18,7 +18,16 @@ function renderer(spec) {
   });
 
   spec.states.forEach(state => {
-    g.setNode(state.name, { shape: "state", label: state.name });
+    console.log(state);
+    const enters = state.activities.entry.sort().map(activity => `<div>entry/${activity}</div>`).join('');
+    const entereds = state.activities.entered.sort().map(activity => `<div>entry/${activity}</div>`).join('');
+    const dos = state.activities.do.sort().map(activity => `<div>do/${activity}</div>`).join('');
+    const exits = state.activities.exit.sort().map(activity => `<div>exit/${activity}</div>`).join('');
+
+    g.setNode(state.name, {
+      shape: "state",
+      labelType: 'html',
+      label: `<div class="state-name">${state.name}</div><div class="state-activities">${enters}${entereds}${dos}${exits}</div>` });
   });
 
   spec.choices.forEach(state => {

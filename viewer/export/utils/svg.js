@@ -26,6 +26,14 @@ const css = `svg {
 .final .label,
 .initial .label {
   transform: translate(30px, 0);
+  font-weight: bolder;
+}
+
+.label .state-name {
+  border-bottom: 1px solid #333;
+  margin-bottom: 3px;
+  text-align: center;
+  font-weight: bolder;
 }
 `;
 
