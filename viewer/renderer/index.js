@@ -7,18 +7,17 @@ const state = require('./shapes/state');
 const { scalingFactor } = require('./tools');
 
 module.exports = renderer;
-function renderer(spec) {
+function renderer({ fsm, meta }) {
   // Create a new directed graph
   const g = new dagreD3.graphlib.Graph().setGraph({});
 
-  g.setNode(spec.initial, { shape: "initial", label: spec.initial });
+  g.setNode(fsm.initial, { shape: "initial", label: fsm.initial });
 
-  spec.final.forEach(state => {
+  fsm.final.forEach(state => {
     g.setNode(state, { shape: "final", label: state });
   });
 
-  spec.states.forEach(state => {
-    console.log(state);
+  fsm.states.forEach(state => {
     const enters = state.activities.entry.sort().map(activity => `<div>entry/${activity}</div>`).join('');
     const entereds = state.activities.entered.sort().map(activity => `<div>entry/${activity}</div>`).join('');
     const dos = state.activities.do.sort().map(activity => `<div>do/${activity}</div>`).join('');
@@ -30,11 +29,11 @@ function renderer(spec) {
       label: `<div class="state-name">${state.name}</div><div class="state-activities">${enters}${entereds}${dos}${exits}</div>` });
   });
 
-  spec.choices.forEach(state => {
+  fsm.choices.forEach(state => {
     g.setNode(state, { shape: "choice", label: "" });
   });
 
-  spec.events.forEach(event => {
+  fsm.events.forEach(event => {
     if (Array.isArray(event.from)) {
       event.from.forEach(from => {
         g.setEdge(from, event.to, { label: event.label, arrowhead: "vee" });
