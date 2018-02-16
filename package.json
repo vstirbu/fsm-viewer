@@ -67,8 +67,8 @@
     "dagre-d3": "^0.5.4",
     "express": "^4.16.2",
     "file-url": "^2.0.2",
-    "fsm-as-promised": "^0.15.1",
-    "fsm2dot": "^2.0.1",
+    "fsm-as-promised": "^0.16.0",
+    "fsm2dot": "^2.1.0",
     "get-port": "^3.2.0",
     "uuid": "^3.2.0"
   }

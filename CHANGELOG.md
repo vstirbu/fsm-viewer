@@ -1,9 +1,8 @@
-# Change Log
-All notable changes to the "fsm-viewer" extension will be documented in this file.
-
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
 ## [Unreleased]
+
+## 1.4.0 - 2018-02-16
+- Preview FSMs in files with import statements
+- Preview FSMs in JSX files
 
 ## 1.3.1 - 2018-01-30
 - Update dependencies
