@@ -11,7 +11,9 @@ function renderer({ fsm, meta }) {
   // Create a new directed graph
   const g = new dagreD3.graphlib.Graph().setGraph({});
 
-  g.setNode(fsm.initial, { shape: "initial", label: fsm.initial });
+  if (fsm.initial) {
+    g.setNode(fsm.initial, { shape: "initial", label: fsm.initial });
+  }
 
   fsm.final.forEach(state => {
     g.setNode(state, { shape: "final", label: state });

@@ -1,4 +1,5 @@
-## [Unreleased]
+## 1.5.0 - 2018-02-18
+- Handle FSMs without initial state
 
 ## 1.4.0 - 2018-02-16
 - Preview FSMs in files with import statements
