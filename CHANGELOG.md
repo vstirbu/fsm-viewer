@@ -1,3 +1,6 @@
+## 1.6.0 - 2018-03-29
+- Handle FSMs with callbacks with quoted keys
+
 ## 1.5.0 - 2018-02-18
 - Handle FSMs without initial state
 
