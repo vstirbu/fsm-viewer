@@ -1,3 +1,6 @@
+## 1.7.0 - 2018-11-27
+- Dark theme support
+
 ## 1.6.0 - 2018-03-29
 - Handle FSMs with callbacks with quoted keys
 
