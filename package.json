@@ -16,13 +16,13 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:fsm-viewer.view"
+    "onCommand:fsmViewer.view"
   ],
   "main": "./extension",
   "contributes": {
     "commands": [
       {
-        "command": "fsm-viewer.view",
+        "command": "fsmViewer.view",
         "title": "View FSM as UML diagram"
       },
       {
