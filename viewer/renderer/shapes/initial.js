@@ -3,10 +3,10 @@
 module.exports = function initial(parent, bbox, node) {
   const r = 15;
   const shapeSvg = parent
-    .insert("circle", ":first-child")
-    .attr("x", -bbox.width / 2)
-    .attr("y", -bbox.height / 2)
-    .attr("r", r);
+    .insert('circle', ':first-child')
+    .attr('x', -bbox.width / 2)
+    .attr('y', -bbox.height / 2)
+    .attr('r', r);
 
   parent.classed('initial', true);
 
@@ -15,4 +15,4 @@ module.exports = function initial(parent, bbox, node) {
   };
 
   return shapeSvg;
-}
+};

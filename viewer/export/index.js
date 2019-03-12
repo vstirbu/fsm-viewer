@@ -7,10 +7,10 @@ const svgString2Image = require('./utils/png');
 
 const png = (svg, width, height) => {
   var svgString = getSVGString(svg.node());
-  svgString2Image(svgString, 2 * width, 2 * height, "png", post); // passes Blob and filesize String to the callback
-}
+  svgString2Image(svgString, 2 * width, 2 * height, 'png', post); // passes Blob and filesize String to the callback
+};
 
-const svg = (uri) => post(uri)(getSVGString(d3.select('svg').node()));
+const svg = uri => post(uri)(getSVGString(d3.select('svg').node()));
 
 const post = uri => (body, filesize) => {
   // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
@@ -18,12 +18,11 @@ const post = uri => (body, filesize) => {
     method: 'POST',
     body: body
   })
-  .then(() => console.log('image sent to vscode extension'))
-  .catch(err => console.log(err));
-
-}
+    .then(() => console.log('image sent to vscode extension'))
+    .catch(err => console.log(err));
+};
 
 module.exports = {
   png,
-  svg
+  svg: () => getSVGString(d3.select('svg').node())
 };

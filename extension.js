@@ -1,16 +1,19 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
+const fs = require('fs');
+const path = require('path');
 const vscode = require('vscode');
 const getWebviewContent = require('./lib/content');
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 function activate(context) {
+  let panel;
+  const _disposables = [];
+
   context.subscriptions.push(
     vscode.commands.registerCommand('fsmViewer.view', () => {
-      const _disposables = [];
-
-      const panel = vscode.window.createWebviewPanel(
+      panel = vscode.window.createWebviewPanel(
         'fsmViewer',
         'FSM Viewer',
         vscode.ViewColumn.Two,
@@ -68,41 +71,39 @@ function activate(context) {
     })
   );
 
-  /*
-  const save = registerCommand('fsm-viewer.save', () => {
-    fetchMedia({
-      format: 'svg',
-      mediaCallback: (err, body) => {
-        provider.clean();
+  context.subscriptions.push(
+    vscode.commands.registerCommand('fsmViewer.save', () => {
+      console.log('save');
 
-        if (err) {
-          vscode.window.showErrorMessage('SVG export failed');
-        } else {
-          vscode.window
-            .showInputBox({
-              prompt: 'Relative to project root',
-              placeHolder: 'Type the output file name'
-            })
-            .then(input => {
-              try {
-                fs.writeFileSync(
-                  path.join(vscode.workspace.rootPath, input),
-                  body
-                );
-              } catch (e) {
-                console.log('not a file');
-              }
-            });
-        }
-      }
-    }).then(mediaUrl => {
-      provider.save({
-        uri: previewUri,
-        media: mediaUrl
+      panel.webview.postMessage({
+        command: 'save'
       });
-    });
-  });
-  */
+
+      panel.webview.onDidReceiveMessage(
+        async message => {
+          switch (message.command) {
+            case 'svg':
+              console.log('svg received', message.content);
+              const filename = await vscode.window.showInputBox({
+                prompt: 'Relative to project root',
+                placeHolder: 'Type the ouput filename'
+              });
+
+              console.log(filename);
+
+              fs.writeFileSync(
+                path.join(vscode.workspace.rootPath, filename),
+                message.content
+              );
+              break;
+            default:
+          }
+        },
+        null,
+        _disposables
+      );
+    })
+  );
 }
 
 exports.activate = activate;
