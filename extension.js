@@ -3,73 +3,104 @@
 const fs = require('fs');
 const path = require('path');
 const vscode = require('vscode');
-const FsmContentProvider = require('./lib/content-provider');
-const fetchMedia = require('./lib/media');
+const getWebviewContent = require('./lib/content');
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 function activate(context) {
-  const registerCommand = vscode.commands.registerCommand;
-  const previewUri = vscode.Uri.parse('fsm-viewer:authority/view');
+  let panel;
+  const _disposables = [];
 
-  const provider = new FsmContentProvider(context);
-
-  const registration = vscode.workspace.registerTextDocumentContentProvider('fsm-viewer', provider);
-
-  const view = registerCommand('fsm-viewer.view', () => {
-    vscode.commands
-    .executeCommand('vscode.previewHtml', previewUri, vscode.ViewColumn.Two, 'FSM Viewer')
-    .then(success => {}, reason => vscode.window.showErrorMessage(reason));
-  });
-
-  vscode.workspace.onDidChangeTextDocument(e => {
-    if (e.document === vscode.window.activeTextEditor.document) {
-      provider.update(previewUri);
-    }
-  });
-
-  vscode.window.onDidChangeTextEditorSelection(e => {
-    if (e.textEditor === vscode.window.activeTextEditor) {
-      provider.update(previewUri);
-    }
-  });
-
-  vscode.window.onDidChangeActiveTextEditor(e => {
-    console.log(vscode.window.activeTextEditor.document.uri === previewUri);
-    provider.update(previewUri);
-  });
-
-  const save = registerCommand('fsm-viewer.save', () => {
-    fetchMedia({
-      format: 'svg',
-      mediaCallback: (err, body) => {
-        provider.clean();
-
-        if (err) {
-          vscode.window.showErrorMessage('SVG export failed');
-        } else {
-          vscode.window.showInputBox({
-            prompt: 'Relative to project root',
-            placeHolder: 'Type the output file name'
-          }).then((input) => {
-            try {
-              fs.writeFileSync(path.join(vscode.workspace.rootPath, input), body);
-            } catch (e) {
-              console.log('not a file');
-            }
-          });
+  context.subscriptions.push(
+    vscode.commands.registerCommand('fsmViewer.view', () => {
+      panel = vscode.window.createWebviewPanel(
+        'fsmViewer',
+        'FSM Viewer',
+        vscode.ViewColumn.Two,
+        {
+          // Enable scripts in the webview
+          enableScripts: true
         }
-      }
-    }).then(mediaUrl => {
-      provider.save({
-        uri: previewUri,
-        media: mediaUrl
-      });
-    });
-  });
+      );
 
-  context.subscriptions.push(view, save, registration);
+      vscode.workspace.onDidChangeTextDocument(
+        e => {
+          if (e.document === vscode.window.activeTextEditor.document) {
+            panel.webview.html = getWebviewContent(context);
+          }
+        },
+        null,
+        _disposables
+      );
+
+      vscode.window.onDidChangeTextEditorSelection(
+        e => {
+          if (e.textEditor === vscode.window.activeTextEditor) {
+            panel.webview.html = getWebviewContent(context);
+          }
+        },
+        null,
+        _disposables
+      );
+
+      vscode.window.onDidChangeActiveTextEditor(
+        e => {
+          // panel.webview.html = getWebviewContent(context);
+        },
+        null,
+        _disposables
+      );
+
+      panel.webview.onDidReceiveMessage(
+        async message => {
+          switch (message.command) {
+            case 'svg':
+              const filename = await vscode.window.showInputBox({
+                prompt: 'Relative to project root',
+                placeHolder: 'Type the ouput filename'
+              });
+
+              filename &&
+                fs.writeFileSync(
+                  path.join(vscode.workspace.rootPath, filename),
+                  message.content
+                );
+              break;
+            default:
+          }
+        },
+        null,
+        _disposables
+      );
+
+      panel.onDidDispose(
+        () => {
+          console.log('panel closed');
+
+          while (_disposables.length) {
+            const item = _disposables.pop();
+            if (item) {
+              item.dispose();
+            }
+          }
+        },
+        null,
+        context.subscriptions
+      );
+
+      panel.webview.html = getWebviewContent(context);
+    })
+  );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand('fsmViewer.save', () => {
+      panel.webview.postMessage({
+        command: 'save'
+      });
+    })
+  );
 }
+
 exports.activate = activate;
 
 // this method is called when your extension is deactivated

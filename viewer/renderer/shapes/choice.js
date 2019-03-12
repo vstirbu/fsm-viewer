@@ -12,20 +12,20 @@ module.exports = function choice(parent, bbox, node) {
     { x: w, y: 0 }
   ];
   const shapeSvg = parent
-    .insert("polygon", ":first-child")
+    .insert('polygon', ':first-child')
     .attr(
-      "points",
+      'points',
       points
         .map(function(p) {
-          return p.x + "," + p.y;
+          return p.x + ',' + p.y;
         })
-        .join(" ")
+        .join(' ')
     )
-    .classed("choice", true);
+    .classed('choice', true);
 
   node.intersect = function(p) {
     return dagreD3.intersect.polygon(node, points, p);
   };
 
   return shapeSvg;
-}
+};
