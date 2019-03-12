@@ -45,8 +45,29 @@ function activate(context) {
 
       vscode.window.onDidChangeActiveTextEditor(
         e => {
-          console.log(e);
           // panel.webview.html = getWebviewContent(context);
+        },
+        null,
+        _disposables
+      );
+
+      panel.webview.onDidReceiveMessage(
+        async message => {
+          switch (message.command) {
+            case 'svg':
+              const filename = await vscode.window.showInputBox({
+                prompt: 'Relative to project root',
+                placeHolder: 'Type the ouput filename'
+              });
+
+              filename &&
+                fs.writeFileSync(
+                  path.join(vscode.workspace.rootPath, filename),
+                  message.content
+                );
+              break;
+            default:
+          }
         },
         null,
         _disposables
@@ -73,35 +94,9 @@ function activate(context) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand('fsmViewer.save', () => {
-      console.log('save');
-
       panel.webview.postMessage({
         command: 'save'
       });
-
-      panel.webview.onDidReceiveMessage(
-        async message => {
-          switch (message.command) {
-            case 'svg':
-              console.log('svg received', message.content);
-              const filename = await vscode.window.showInputBox({
-                prompt: 'Relative to project root',
-                placeHolder: 'Type the ouput filename'
-              });
-
-              console.log(filename);
-
-              fs.writeFileSync(
-                path.join(vscode.workspace.rootPath, filename),
-                message.content
-              );
-              break;
-            default:
-          }
-        },
-        null,
-        _disposables
-      );
     })
   );
 }

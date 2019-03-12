@@ -29,8 +29,8 @@
         "command": "fsmViewer.save",
         "title": "Save SVG",
         "icon": {
-          "light": "./images/export-svg.svg",
-          "dark": "./images/export-svg.svg"
+          "light": "./images/svg-light.png",
+          "dark": "./images/svg-dark.png"
         }
       }
     ],
@@ -62,14 +62,9 @@
     "vscode": "^1.1.14"
   },
   "dependencies": {
-    "body-parser": "^1.18.2",
     "d3": "^4.12.2",
     "dagre-d3": "^0.6.1",
-    "express": "^4.16.2",
-    "file-url": "^2.0.2",
     "fsm-as-promised": "^0.16.0",
-    "fsm2dot": "^2.2.0",
-    "get-port": "^3.2.0",
-    "uuid": "^3.2.0"
+    "fsm2dot": "^2.2.0"
   }
 }
