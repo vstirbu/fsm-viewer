@@ -1,4 +1,6 @@
-## unpublished
+# Changelog
+
+## 1.7.1 - 2019-03-12
 
 - Moved to Webview
 
