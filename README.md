@@ -15,7 +15,3 @@ Edit the file containing finite state machine implemented using the [fsm-as-prom
 The command is available while the FSM Preview editor is active.
 
 ![export svg](images/docs/export-svg.png)
-
-## Acknowledgements
-
-Icons used for export functions designed by [Smashicons](https://www.flaticon.com/authors/smashicons) from Flaticon.
