@@ -83,6 +83,12 @@ function activate(context) {
               item.dispose();
             }
           }
+
+          vscode.commands.executeCommand(
+            'setContext',
+            'fsmViewer:canExport',
+            false
+          );
         },
         null,
         context.subscriptions

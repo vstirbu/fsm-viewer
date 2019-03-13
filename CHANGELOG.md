@@ -1,5 +1,9 @@
 # Changelog
 
+## unpublished
+
+- Cleanup SVG save icon after disposing the panel
+
 ## 1.7.1 - 2019-03-12
 
 - Moved to Webview
