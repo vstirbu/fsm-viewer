@@ -1,8 +1,9 @@
 # Changelog
 
-## unpublished
+## 1.7.2 - 2019-04-03
 
 - Cleanup SVG save icon after disposing the panel
+- Fixed dynamic initial state
 
 ## 1.7.1 - 2019-03-12
 
