@@ -4,6 +4,17 @@ View finite state machines using [fsm-as-promised](https://github.com/vstirbu/fs
 
 ## Features
 
+### Language support
+
+The extension is able to process JavaScript files that contain the following proposed features:
+
+- class properties
+- object rest spread
+
+and extensions:
+
+- jsx
+
 ### View
 
 Edit the file containing finite state machine implemented using the [fsm-as-promised](https://github.com/vstirbu/fsm-as-promised) library in the editor. Open the Command Palette and type `View FSM as UML diagram`. The extension will render the corresponding UML diagram in a new panel.

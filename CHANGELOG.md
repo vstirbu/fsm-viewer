@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.8.0 - 2019-04-06
+
+- Ability to parse files containing proposed language features and extensions:
+  - class-properties
+  - object-rest-spread
+  - jsx
+
 ## 1.7.2 - 2019-04-03
 
 - Cleanup SVG save icon after disposing the panel

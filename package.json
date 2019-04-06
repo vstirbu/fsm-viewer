@@ -2,7 +2,7 @@
   "name": "fsm-viewer",
   "displayName": "Finite state machine viewer",
   "description": "View finite state machines using fsm-as-promised library as UML diagrams in VSCode",
-  "version": "1.7.2",
+  "version": "1.8.0",
   "license": "MIT",
   "publisher": "vstirbu",
   "repository": {
@@ -62,9 +62,14 @@
     "vscode": "^1.1.14"
   },
   "dependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/generator": "^7.4.0",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.3",
+    "@babel/plugin-transform-react-jsx": "^7.3.0",
     "d3": "^4.12.2",
     "dagre-d3": "^0.6.1",
     "fsm-as-promised": "^0.16.0",
-    "fsm2dot": "^2.2.1"
+    "fsm2dot": "^2.2.2"
   }
 }
