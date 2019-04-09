@@ -2,6 +2,10 @@
 
 View finite state machines using [fsm-as-promised](https://github.com/vstirbu/fsm-as-promised) library as UML diagrams in VSCode
 
+[![](http://vsmarketplacebadge.apphb.com/version/vstirbu.fsm-viewer.svg)](https://marketplace.visualstudio.com/itemdetails?itemName=vstirbu.fsm-viewer)
+[![](http://vsmarketplacebadge.apphb.com/installs/vstirbu.fsm-viewer.svg)](https://marketplace.visualstudio.com/itemdetails?itemName=vstirbu.fsm-viewer)
+[![](http://vsmarketplacebadge.apphb.com/trending-monthly/vstirbu.fsm-viewer.svg)](https://marketplace.visualstudio.com/itemdetails?itemName=vstirbu.fsm-viewer)
+
 ## Features
 
 ### Language support
