@@ -51,6 +51,7 @@
     }
   },
   "scripts": {
+    "build": "parcel build viewer/index.js -d dist",
     "postinstall": "node ./node_modules/vscode/bin/install",
     "test": "node ./node_modules/vscode/bin/test"
   },
@@ -58,6 +59,7 @@
     "@types/mocha": "^5.0.0",
     "@types/node": "^9.6.1",
     "eslint": "^4.19.1",
+    "parcel": "^1.12.3",
     "typescript": "^2.8.1",
     "vscode": "^1.1.33"
   },
